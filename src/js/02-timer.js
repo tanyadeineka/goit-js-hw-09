@@ -4,10 +4,10 @@ import Notiflix from 'notiflix';
 
 const text = document.querySelector('#datetime-picker');
 const btn = document.querySelector('button[data-start]');
-const days = document.querySelector('.value[data-days]');
-const hours = document.querySelector('.value[data-hours]');
-const minutes = document.querySelector('.value[data-minutes]');
-const seconds = document.querySelector('.value[data-seconds]');
+const dayValue = document.querySelector('.value[data-days]');
+const hourValue = document.querySelector('.value[data-hours]');
+const minuteValue = document.querySelector('.value[data-minutes]');
+const secondValue = document.querySelector('.value[data-seconds]');
 
 btn.disabled = true;
 
@@ -48,17 +48,16 @@ function convertMs(ms) {
 }
 
 function addLeadingZero(value) {
-  const stringValue = String(value);
-  return stringValue.padStart(2, '0');
+  return String(value).padStart(2, '0');
 }
 
 btn.addEventListener("click", () => {
     timerId = setInterval(() => {
         let countdown = new Date(text.value) - new Date();
         let timeObject = convertMs(countdown);
-        days.textContent = addLeadingZero(timeObject.days);
-        hours.textContent = addLeadingZero(timeObject.hours);
-        minutes.textContent = addLeadingZero(timeObject.minutes);
-        seconds.textContent = addLeadingZero(timeObject.seconds);
+        dayValue.textContent = addLeadingZero(timeObject.days);
+        hourValue.textContent = addLeadingZero(timeObject.hours);
+        minuteValue.textContent = addLeadingZero(timeObject.minutes);
+        secondValue.textContent = addLeadingZero(timeObject.seconds);
     }, 1000);
 });
