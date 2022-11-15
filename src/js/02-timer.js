@@ -52,14 +52,16 @@ function addLeadingZero(value) {
 }
 
 btn.addEventListener("click", () => {
-    timerId = setInterval(() => {
-        let countdown = new Date(text.value) - new Date();
-      if (countdown >= 0) {
-        let timeObject = convertMs(countdown);
-        dayValue.textContent = addLeadingZero(timeObject.days);
-        hourValue.textContent = addLeadingZero(timeObject.hours);
-        minuteValue.textContent = addLeadingZero(timeObject.minutes);
-        secondValue.textContent = addLeadingZero(timeObject.seconds);
-      }  
-    }, 1000);
+  let timerId = setInterval(() => {
+    let countdown = new Date(text.value) - new Date();
+    if (countdown >= 0) {
+      let timeObject = convertMs(countdown);
+      dayValue.textContent = addLeadingZero(timeObject.days);
+      hourValue.textContent = addLeadingZero(timeObject.hours);
+      minuteValue.textContent = addLeadingZero(timeObject.minutes);
+      secondValue.textContent = addLeadingZero(timeObject.seconds);
+    } else {
+      clearInterval(timerId);
+    } 
+  }, 1000);
 });
